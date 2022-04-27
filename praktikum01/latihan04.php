@@ -20,38 +20,16 @@
     }
     $sql = "SELECT rank, name, points, team FROM klasemen";
     $result = $conn->query($sql);
-    ?>
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>rank</th>
-                        <th>name</th>
-                        <th>points</th>
-                        <th>team</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                    ?>
-                        <tr>
-                            <td><?php echo $row["rank"]?></td>
-                            <td><?php echo $row["name"]?></td>
-                            <td><?php echo $row["points"]?></td>
-                            <td><?php echo $row["team"]?></td>
-                        </tr>
-                    <?php
-                        }
-                    } else {
-                    ?>
-                        <tr>
-                            <td colspan="4" style="...">No data</td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-            </tbody>
-        </table>
-    </body>
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) { 
+        echo "rank: " . $row["rank"]." - Name: " . $row["name"].
+        " " . $row["points"]. " - Team: ". $row['team'] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>  
+</body>
 </html>
